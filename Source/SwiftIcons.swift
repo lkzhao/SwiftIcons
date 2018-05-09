@@ -798,6 +798,17 @@ public extension UIViewController {
     }
 }
 
+public extension NSAttributedString {
+  public convenience init(icon: FontType, size: CGFloat, color: UIColor) {
+    FontLoader.loadFontIfNeeded(fontType: icon)
+    let iconFont = UIFont(name: icon.fontName(), size: size)!
+    let iconAttributes = [NSAttributedStringKey.font: iconFont,
+                          NSAttributedStringKey.foregroundColor: color]
+
+    self.init(string: icon.text!, attributes: iconAttributes)
+  }
+}
+
 private class FontLoader {
     
     /**
